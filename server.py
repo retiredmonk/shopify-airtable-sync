@@ -26,7 +26,13 @@ app.include_router(
 @app.on_event("startup")
 async def startup():
     init_db()
-    asyncio.create_task(retry_worker_loop())
+    #async def safe_worker_loop():
+        #try:
+         #   await retry_worker_loop()
+        #except Exception as e:
+         #   print("Retry Worker Crashed:", str(e))
+
+    #asyncio.create_task(safe_worker_loop())
 
 
 if __name__ == "__main__":
