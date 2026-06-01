@@ -3,10 +3,10 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import json
 
-FILE_PATH = Path("Data/processed_orders.db")
-
+FILE_PATH = Path("/tmp/processed_orders.db")
 
 def get_connection():
+    FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
     return sqlite3.connect(FILE_PATH, check_same_thread=False)
 
 
