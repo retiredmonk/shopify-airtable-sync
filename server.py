@@ -5,7 +5,6 @@ import uvicorn
 from router import router
 from middlewares.requestLogger import log_requests
 from middlewares.errorMiddleware import global_exception_handler
-from services.retryService import retry_worker_loop
 from database.initDB import init_db
 
 app = FastAPI(
@@ -25,7 +24,11 @@ app.include_router(
 
 @app.on_event("startup")
 async def startup():
+
     init_db()
+
+    from services.retryService import retry_worker_loop
+
     async def safe_worker_loop():
         try:
             await retry_worker_loop()
