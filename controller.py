@@ -2,7 +2,7 @@ import json
 from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
 
-from services.orderProcessingService import process_order
+from services.order_processing_service import process_order
 from utils.logger import logger
 from utils.validator import _validate_payload
 

@@ -1,6 +1,6 @@
 import httpx
 import asyncio
-from config.airtableConfig import get_airtable_config
+from config.airtable_config import get_airtable_config
 from utils.logger import logger
 
 config = get_airtable_config()

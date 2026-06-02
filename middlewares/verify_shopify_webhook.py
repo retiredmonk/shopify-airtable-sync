@@ -2,7 +2,7 @@ import hmac
 import hashlib
 import base64
 from fastapi import Request, HTTPException
-from config.shopifyConfig import get_shopify_config
+from config.shopify_config import get_shopify_config
 
 config = get_shopify_config()
 

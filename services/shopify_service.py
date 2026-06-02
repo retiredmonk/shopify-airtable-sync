@@ -1,5 +1,5 @@
 import httpx
-from config.shopifyConfig import get_shopify_config
+from config.shopify_config import get_shopify_config
 
 
 config = get_shopify_config()

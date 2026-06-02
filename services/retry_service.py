@@ -1,5 +1,5 @@
 import asyncio
-from database.initDB import (
+from database.db import (
     get_retryable_orders,
     claim_failed_order,
     update_order_status,
@@ -7,8 +7,8 @@ from database.initDB import (
     get_retry_count,
     increment_retry_count
 )
-from services.orderTransformerService import _transform_order
-from services.airtableService import _send_to_airtable
+from services.order_transformer_service import _transform_order
+from services.airtable_service import _send_to_airtable
 from utils.logger import logger
 
 lock = asyncio.Lock()

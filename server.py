@@ -3,9 +3,9 @@ from fastapi import FastAPI
 import uvicorn
 
 from router import router
-from middlewares.requestLogger import log_requests
-from middlewares.errorMiddleware import global_exception_handler
-from database.initDB import init_db
+from middlewares.request_logger import log_requests
+from middlewares.error_middleware import global_exception_handler
+from database.db import init_db
 
 app = FastAPI(
     title="Shopify Order Webhook Storage Service",
@@ -27,7 +27,7 @@ async def startup():
 
     init_db()
 
-    from services.retryService import retry_worker_loop
+    from services.retry_service import retry_worker_loop
 
     async def safe_worker_loop():
         try:
