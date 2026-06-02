@@ -7,8 +7,8 @@ from database.db import (
     get_retry_count,
     increment_retry_count
 )
-from services.order_transformer_service import _transform_order
-from services.airtable_service import _send_to_airtable
+from services.order_transformer_service import transform_order
+from services.airtable_service import send_to_airtable
 from utils.logger import logger
 
 lock = asyncio.Lock()
@@ -44,8 +44,8 @@ async def retry_failed_orders():
 
             logger.info(f"Retrying order {order_id} (attempt {retry_count + 1})")
 
-            transformed_data = _transform_order(payload)
-            await _send_to_airtable(transformed_data)
+            transformed_data = transform_order(payload)
+            await send_to_airtable(transformed_data)
 
             update_order_status(order_id, "completed")
 

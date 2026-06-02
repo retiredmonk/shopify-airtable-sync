@@ -5,7 +5,7 @@ from utils.logger import logger
 
 config = get_airtable_config()
 
-async def _send_to_airtable(data: dict):
+async def send_to_airtable(data: dict):
 
     url =  f"https://api.airtable.com/v0/{config.BASE_ID}/{config.TABLE_NAME}"
 

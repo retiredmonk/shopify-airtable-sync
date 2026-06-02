@@ -1,4 +1,4 @@
-def _transform_order(payload: dict) -> dict:
+def transform_order(payload: dict) -> dict:
 
     return {
         "Order ID": payload.get("id"),

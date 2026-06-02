@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 
-def _validate_payload(payload: dict):
+def validate_payload(payload: dict):
 
     if not payload:
         raise HTTPException(status_code=400, detail="Empty payload")

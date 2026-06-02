@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 
 from services.order_processing_service import process_order
 from utils.logger import logger
-from utils.validator import _validate_payload
+from utils.validator import validate_payload
 
 
 async def handle_order_webhook(request: Request):
@@ -17,8 +17,7 @@ async def handle_order_webhook(request: Request):
     except (json.JSONDecodeError, UnicodeDecodeError):
         raise HTTPException(status_code=400, detail="Invalid JSON payload")
 
-
-    _validate_payload(payload)
+    validate_payload(payload)
 
     logger.info(f"Received Shopify Order with ID:{payload['id']} Webhook")
 
