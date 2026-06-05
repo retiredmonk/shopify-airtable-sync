@@ -1,13 +1,13 @@
 import httpx
 import asyncio
-from config.airtable_config import get_airtable_config
+from env import get_settings
 from utils.logger import logger
 
-config = get_airtable_config()
+config = get_settings()
 
 async def send_to_airtable(data: dict):
 
-    url =  f"https://api.airtable.com/v0/{config.BASE_ID}/{config.TABLE_NAME}"
+    url =  f"https://api.airtable.com/v0/{config.AIRTABLE_BASE_ID}/{config.AIRTABLE_TABLE_NAME}"
 
     headers = {
         "Authorization": f"Bearer {config.API_TOKEN}",

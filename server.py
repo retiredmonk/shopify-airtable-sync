@@ -2,6 +2,7 @@ import asyncio
 from fastapi import FastAPI
 import uvicorn
 
+from services.retry_service import retry_worker_loop
 from router import router
 from middlewares.request_logger import log_requests
 from middlewares.error_middleware import global_exception_handler
@@ -24,10 +25,7 @@ app.include_router(
 
 @app.on_event("startup")
 async def startup():
-
     init_db()
-
-    from services.retry_service import retry_worker_loop
 
     async def safe_worker_loop():
         try:

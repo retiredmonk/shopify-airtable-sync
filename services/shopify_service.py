@@ -1,15 +1,14 @@
 import httpx
-from config.shopify_config import get_shopify_config
+from env import get_settings
 
-
-config = get_shopify_config()
+config = get_settings()
 
 async def fetch_shopify_order(order_id: str):
 
-    url = f"{config.BASE_URL}/admin/api/2023-10/orders/{order_id}.json"
+    url = f"{config.SHOPIFY_BASE_URL}/admin/api/2023-10/orders/{order_id}.json"
 
     headers = {
-        "X-Shopify-Access-Token": config.ACCESS_TOKEN,
+        "X-Shopify-Access-Token": config.SHOPIFY_ACCESS_TOKEN,
         "Content-Type": "application/json",
     }
 

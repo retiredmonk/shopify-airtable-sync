@@ -1,7 +1,9 @@
-from database.db import claim_order, update_order_status
+from database.db import claim_order, update_order_status, get_connection
 from services.order_transformer_service import transform_order
 from services.airtable_service import send_to_airtable
 from utils.logger import logger
+
+connection = get_connection()
 
 async def process_order(payload: dict):
 

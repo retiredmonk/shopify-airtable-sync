@@ -2,9 +2,9 @@ import hmac
 import hashlib
 import base64
 from fastapi import Request, HTTPException
-from config.shopify_config import get_shopify_config
+from env import get_settings
 
-config = get_shopify_config()
+config = get_settings()
 
 async def verify_shopify_webhook(request: Request):
 
@@ -16,7 +16,7 @@ async def verify_shopify_webhook(request: Request):
 
     computed_hmac = base64.b64encode(
         hmac.new(
-            config.WEBHOOK_SECRET.encode("utf-8"),
+            config.SHOPIFY_WEBHOOK_SECRET.encode("utf-8"),
             body,
             hashlib.sha256
         ).digest()

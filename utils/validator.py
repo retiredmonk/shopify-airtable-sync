@@ -16,5 +16,4 @@ def validate_payload(payload: dict):
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid price")
 
-
     return True

@@ -5,25 +5,26 @@ from database.db import (
     update_order_status,
     get_order_payload,
     get_retry_count,
-    increment_retry_count
+    increment_retry_count,
+    get_connection
 )
 from services.order_transformer_service import transform_order
 from services.airtable_service import send_to_airtable
 from utils.logger import logger
 
 lock = asyncio.Lock()
-
+connection = get_connection()
 
 MAX_RETRIES = 5
 
 
 async def retry_failed_orders():
 
-    orders = get_retryable_orders()
+    orders = get_retryable_orders(connection)
 
     for order_id in orders:
 
-        claimed = claim_failed_order(order_id)
+        claimed = claim_failed_order(connection, order_id)
 
         if not claimed:
             continue
@@ -48,7 +49,6 @@ async def retry_failed_orders():
             await send_to_airtable(transformed_data)
 
             update_order_status(order_id, "completed")
-
             logger.info(f"Retry successful for {order_id}")
 
         except Exception as e:
