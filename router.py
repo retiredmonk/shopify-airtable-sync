@@ -11,6 +11,17 @@ router = APIRouter()
 )
 
 async def order_webhook_endpoint(request: Request):
-    await verify_shopify_webhook(request)
+    print("🔥 WEBHOOK HIT")
 
-    return await handle_order_webhook(request)
+    try:
+        await verify_shopify_webhook(request)
+        print("✅ Verified")
+
+        response = await handle_order_webhook(request)
+        print("✅ Processed")
+
+        return response
+
+    except Exception as e:
+        print("❌ ERROR:", str(e))
+        raise
