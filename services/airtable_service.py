@@ -10,7 +10,7 @@ async def send_to_airtable(data: dict):
     url =  f"https://api.airtable.com/v0/{config.AIRTABLE_BASE_ID}/{config.AIRTABLE_TABLE_NAME}"
 
     headers = {
-        "Authorization": f"Bearer {config.API_TOKEN}",
+        "Authorization": f"Bearer {config.AIRTABLE_API_TOKEN}",
         "Content-Type": "application/json",
     }
 
